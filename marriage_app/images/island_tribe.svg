@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="700" viewBox="0 0 1200 700">
+  <defs><linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#0284c7"/><stop offset="100%" stop-color="#14b8a6"/></linearGradient></defs>
+  <rect width="1200" height="700" rx="32" fill="url(#bg)"/>
+  <ellipse cx="600" cy="560" rx="220" ry="70" fill="#facc15"/>
+  <rect x="540" y="360" width="20" height="120" fill="#92400e"/>
+  <path d="M550 370 Q620 320 700 360" stroke="#22c55e" stroke-width="26" fill="none"/>
+  <path d="M550 390 Q620 350 690 395" stroke="#16a34a" stroke-width="18" fill="none"/>
+  <rect x="380" y="300" width="160" height="230" rx="38" fill="#fef9c3"/>
+  <rect x="660" y="300" width="160" height="230" rx="38" fill="#ede9fe"/>
+  <circle cx="460" cy="270" r="42" fill="#f5cfa0"/>
+  <circle cx="740" cy="270" r="42" fill="#f5cfa0"/>
+  <text x="600" y="640" text-anchor="middle" font-family="Arial" font-size="64" fill="white" font-weight="700">Island Tribe</text>
+</svg>

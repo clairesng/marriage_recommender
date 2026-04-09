@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="700" viewBox="0 0 1200 700">
+  <defs><linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#f59e0b"/><stop offset="100%" stop-color="#ef4444"/></linearGradient></defs>
+  <rect width="1200" height="700" rx="32" fill="url(#bg)"/>
+  <circle cx="260" cy="140" r="55" fill="#fde68a"/>
+  <polygon points="260,95 275,130 315,130 282,152 295,190 260,166 225,190 238,152 205,130 245,130" fill="#fff"/>
+  <rect x="320" y="300" width="220" height="240" rx="45" fill="#dcfce7"/>
+  <rect x="660" y="300" width="220" height="240" rx="45" fill="#dbeafe"/>
+  <circle cx="430" cy="265" r="48" fill="#f5cfa0"/>
+  <circle cx="770" cy="265" r="48" fill="#f5cfa0"/>
+  <path d="M540 390 C620 320 660 320 760 390" stroke="#fff" stroke-width="10" fill="none"/>
+  <text x="600" y="630" text-anchor="middle" font-family="Arial" font-size="64" fill="white" font-weight="700">Dynamic Explorers</text>
+</svg>

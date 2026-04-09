@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="700" viewBox="0 0 1200 700">
+  <defs><linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#ef4444"/><stop offset="100%" stop-color="#38bdf8"/></linearGradient></defs>
+  <rect width="1200" height="700" rx="32" fill="url(#bg)"/>
+  <path d="M250 450 C210 380 280 330 260 270 C340 300 360 380 320 450 Z" fill="#f59e0b"/>
+  <path d="M900 470 C840 430 850 350 920 300 C980 350 980 430 940 470 Z" fill="#bfdbfe"/>
+  <rect x="360" y="320" width="200" height="220" rx="40" fill="#fee2e2"/>
+  <rect x="640" y="320" width="200" height="220" rx="40" fill="#dbeafe"/>
+  <circle cx="460" cy="290" r="45" fill="#f5cfa0"/>
+  <circle cx="740" cy="290" r="45" fill="#f5cfa0"/>
+  <text x="600" y="630" text-anchor="middle" font-family="Arial" font-size="64" fill="white" font-weight="700">Fire &amp; Ice Duo</text>
+</svg>
