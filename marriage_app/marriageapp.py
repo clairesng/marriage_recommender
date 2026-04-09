@@ -643,13 +643,22 @@ def get_archetype_profile(
     )
 
 
-def get_secondary_archetype_hint(values_match, inlaw_min_band, common_int, finances):
+def get_secondary_archetype_hint(values_match, inlaw_min_band, common_int, finances, primary_archetype=None):
+    candidates = []
+
     if inlaw_min_band == "Low":
-        return "Island Tribe"
+        candidates.append("Island Tribe")
     if common_int == "Yes" and values_match <= 1:
-        return "Dynamic Explorers"
+        candidates.append("Dynamic Explorers")
     if finances == "Mostly aligned":
-        return "Practical Architects"
+        candidates.append("Practical Architects")
+
+    candidates.extend(["Balanced Builders", "Growth Partners"])
+
+    for cand in candidates:
+        if cand != primary_archetype:
+            return cand
+
     return "Growth Partners"
 
 
@@ -1032,9 +1041,9 @@ if st.session_state.partner_answers["Girlfriend"] and st.session_state.partner_a
     )
 
     st.divider()
-    st.subheader("Compatibility result")
+    st.subheader("Result")
     st.caption(
-        "The result reflects patterns from our data set. "
+        "The result reflects patterns from our dataset and model. "
         "It is not a clinical diagnosis or deterministic prediction of your relationship."
     )
 
@@ -1062,7 +1071,13 @@ if st.session_state.partner_answers["Girlfriend"] and st.session_state.partner_a
     # Mitigation for boundary instability: show a secondary hint near band edges.
     nearest_edge_dist = min(abs(compatibility_score - x) for x in [40, 65, 85])
     if nearest_edge_dist <= 3:
-        secondary = get_secondary_archetype_hint(values_match, inlaw_min_band, common_int, finances)
+        secondary = get_secondary_archetype_hint(
+            values_match,
+            inlaw_min_band,
+            common_int,
+            finances,
+            primary_archetype=archetype,
+        )
         st.caption(f"Near a band boundary: secondary possible dynamic is **{secondary}**.")
 
     # Mitigations for interpretation risks
@@ -1070,6 +1085,3 @@ if st.session_state.partner_answers["Girlfriend"] and st.session_state.partner_a
         st.markdown(
             "- **Not deterministic:** Treat this as a tool for self-reflection rather than a verdict. Results may not generalise to all couples. Regardless of compatibility score, the Growth Quest can provide useful next steps for you and your partner to improve your relationship. \n"
         )
-
-    with st.expander("See combined feature values used for prediction"):
-        st.dataframe(input_data, use_container_width=True)
