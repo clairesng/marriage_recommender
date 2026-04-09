@@ -590,9 +590,9 @@ def get_archetype_profile(
     if values_match >= 2 and finances == "Mostly aligned" and common_int == "Yes" and social_app == "Yes" and inlaw_min_band != "Low":
         return (
             "Power Couple",
-            "You are both highly aligned on core life values and shared dynamics – your values, finances, and social lives are in sync.",
-            "Avoid complacency: You may unknowingly become complacent about the relationship and take each other for granted, or stop challenging each other to grow.",
-            "The good news is you're on the right track! Keep a monthly check-in to discuss important topics, and keep sharing your thoughts and feelings with each other. This ensures both of you continue to stay on the same page without compromising honesty for harmony. Don't forget to have fun together and keep doing the things you both enjoy!",
+            "You are both highly aligned on core life values and shared dynamics – your values, finances, and social lives are in sync. You're on the right track for a strong and lasting relationship!",
+            "You may unknowingly become complacent about the relationship and take each other for granted, or stop challenging each other to grow.",
+            "Keep a monthly check-in to discuss important topics, and keep being open with each other. This ensures both of you are on the same page without compromising honesty for harmony. Don't forget to have fun together!",
         )
 
     if values_match >= 2 and inlaw_min_band == "Low":
@@ -600,7 +600,7 @@ def get_archetype_profile(
             "Island Tribe",
             "You have a strong bond as a couple, aligning on your shared values which you both cherish and see as important. The 'big picture' matters to you - and this is likely a powerful glue for your relationship.",
             "Friction from family or future in-laws can spill into your relationship and drain your energy. Whether it's on one side or both, it can create tension that may be hard to resolve without support.",
-            "Family relationships can be complex and challenging. It may help to create a boundary plan for family events and interactions (e.g. duration, exit cue, and debrief after). Focus on being united when it comes to family, and if possible, work on improving the relationship with your potential in-laws.",
+            "Create a boundary plan for family events and interactions (e.g. duration, exit cue, and debrief after). Focus on being a team and if possible, work on improving the relationship with your potential in-laws.",
         )
 
     if common_int == "Yes" and values_match <= 1:
@@ -608,7 +608,7 @@ def get_archetype_profile(
             "Dynamic Explorers",
             "You connect through shared activities and energy, and your relationship is likely filled with adventure. You enjoy spending time with each other, and your hobbies feel even better when done together!",
             "Without meaning to, topics about the future (kids, money, long-term goals) may be under-discussed or forgotten in the excitement of your relationship.",
-            "Deep dive: Build on your relationship by discussing what matters most to you both, and understand each other's perspectives. While both of you may not be certain of what you want, organising a monthly 'State of Us' to talk about the big issues can help you stay aligned and engaged about your future together. Remember to approach these conversations with curiosity and openness (e.g. 'Help me understand why this is important to you?' or 'I see this differently, can I share my perspective?') and recognise that everyone has different values and perspectives.",
+            "Be proactive about bridging any gaps in what you both want and need. Organising a monthly check-in can help you stay aligned and engaged about your future together. Remember to approach these conversations with curiosity and openness (e.g. 'Help me understand why this is important to you?').",
         )
 
     if finances == "Mostly aligned" and household_aligned and soulmates != "Yes - we both do":
@@ -624,7 +624,7 @@ def get_archetype_profile(
             "Fire & Ice Duo",
             "Different backgrounds coexisting with solid support. Even with a larger age gap, you share a strong social bond.",
             "Differences in values and viewpoints may intensify conflict for couples who lack conflict resolution and repair skills.",
-            "Explore different viewpoints respectfully and take breaks during arguments when needed. Try to define 3 non-negotiable shared values to anchor disagreements, and remember to validate each other's feelings and perspectives even when you disagree (e.g. 'I see why that would be important to you' or 'I understand that this is hard for you'). Repairing after conflict is especially important, such as spending quality time together or doing a shared activity you both enjoy.",
+            "Define 3 non-negotiable shared values to anchor disagreements, and remember to validate each other's feelings during conflict (e.g. 'I see why that would be important to you'). Repairing after conflict is especially important, such as doing a shared activity you both enjoy.",
         )
 
     if premarital == "Yes" and inlaw_min_band != "Low" and finances != "Mostly aligned":
@@ -632,14 +632,14 @@ def get_archetype_profile(
             "Safety Net Couple",
             "You have good support structures as a couple and a willingness to work on the relationship. By taking the step to attend premarital counselling, you have taken a proactive approach to building a strong foundation.",
             "Financial alignment is the main sticking point to work on together.",
-            "Try using a simple shared system (rules for saving, spending, and emergency decisions). Discuss your money values and triggers to understand each other's perspectives better (e.g. why one of you prefers to save while the other prefers to spend) and find a common ground that respects both approaches. Since money can be a sensitive topic, remember to approach it with empathy and a problem-solving mindset rather than judgment. It might be helpful to frame it as 'How can we create a money system that works for both of us and reduces stress?'.",
+            "Work on a shared system (rules for saving, spending, and emergency decisions). Discuss your money values and triggers to understand each other's perspectives and find a common ground that respects both approaches. Since money can be a sensitive topic, remember to approach it with a problem-solving mindset.",
         )
 
     return (
         "Balanced Builders",
         "You are 'steady growers' as a couple - showing mixed strengths with room to grow into a very stable pattern.",
         "Undefined friction can quietly accumulate without structure or check-ins.",
-        "Pick one high-impact area to focus on for 30 days (money alignment, family relationships, or shared hobbies).",
+        "Pick an area to focus on for 30 days (money alignment, family relationships, or shared hobbies) and set a shared goal to work towards together. Remember to approach challenges as a team, and invest in the relationship with consistent acts of support.",
     )
 
 
