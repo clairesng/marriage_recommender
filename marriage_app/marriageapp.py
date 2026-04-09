@@ -1041,9 +1041,9 @@ if st.session_state.partner_answers["Girlfriend"] and st.session_state.partner_a
     )
 
     st.divider()
-    st.subheader("Result")
+    st.subheader("Compatibility Score")
     st.caption(
-        "The result reflects patterns from our dataset and model. "
+        "The score reflects patterns from our dataset and model. "
         "It is not a clinical diagnosis or deterministic prediction of your relationship."
     )
 
