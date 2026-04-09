@@ -10,11 +10,33 @@ from sklearn.preprocessing import OneHotEncoder
 # Streamlit page config must be the first Streamlit command.
 st.set_page_config(page_title="Marriage Recommender", page_icon="💍")
 
+
+def resolve_project_file(filename: str) -> Path:
+    app_dir = Path(__file__).resolve().parent
+    candidates = [
+        app_dir / filename,
+        app_dir.parent / filename,
+        app_dir.parent / "data" / filename,
+        Path.cwd() / filename,
+        Path.cwd() / "marriage_app" / filename,
+    ]
+
+    for p in candidates:
+        if p.exists():
+            return p
+
+    checked = "\n".join(str(p) for p in candidates)
+    raise FileNotFoundError(
+        f"Could not find required file: {filename}\n"
+        f"Checked paths:\n{checked}\n"
+        "Make sure this file is committed to your GitHub repo for Streamlit deployment."
+    )
+
 # 1. Load the model
 @st.cache_resource
 def load_marriage_model():
     model = CatBoostClassifier()
-    model_path = Path(__file__).resolve().parent / "catboost_run4_best_model.cbm"
+    model_path = resolve_project_file("catboost_run4_best_model.cbm")
     model.load_model(str(model_path))
     return model
 
@@ -77,7 +99,7 @@ FINANCE_OVERSPEND_MAP = {
 
 @st.cache_resource
 def load_run4_preprocessor():
-    feature_store_path = Path(__file__).resolve().parents[1] / "divorced_feature_store.csv"
+    feature_store_path = resolve_project_file("divorced_feature_store.csv")
     df = pd.read_csv(feature_store_path)
     X = df[RUN4_FEATURES].copy()
 
@@ -106,15 +128,10 @@ def load_run4_preprocessor():
     preprocessor.fit(X)
     return preprocessor
 
-
-pre4 = load_run4_preprocessor()
-
-
 @st.cache_data
 def load_eda_data():
-    root = Path(__file__).resolve().parents[1]
-    raw_path = root / "divorced.csv"
-    feature_store_path = root / "divorced_feature_store.csv"
+    raw_path = resolve_project_file("divorced.csv")
+    feature_store_path = resolve_project_file("divorced_feature_store.csv")
     raw_df = pd.read_csv(raw_path, encoding="latin1")
     feature_df = pd.read_csv(feature_store_path)
     return raw_df, feature_df
@@ -430,15 +447,26 @@ def is_full_money_alignment(gf_answers, bf_answers):
 
 def inlaw_relationship_score(holiday_choice, support_choice):
     holiday_map = {
+        "I'm happy to go and feel great": 5,
         "I'm happy to go and feel great about it": 5,
         "I'm neutral or indifferent": 3,
+        "I rather not go and feel uncomfortable": 1,
         "I'd rather not go and feel uncomfortable about it": 1,
     }
     support_map = {
+        "Do it willingly and happily": 5,
         "I'd do it willingly and warmly": 5,
+        "Do it if needed": 3,
         "I'd do it if needed": 3,
+        "Avoid it if possible": 1,
         "I'd avoid it if possible": 1,
     }
+
+    if holiday_choice not in holiday_map:
+        raise ValueError(f"Unexpected in-law holiday option: {holiday_choice}")
+    if support_choice not in support_map:
+        raise ValueError(f"Unexpected in-law support option: {support_choice}")
+
     return (holiday_map[holiday_choice] + support_map[support_choice]) / 2
 
 
@@ -962,6 +990,7 @@ if st.session_state.partner_answers["Girlfriend"] and st.session_state.partner_a
         if input_data[col].dtype == "object":
             input_data[col] = input_data[col].astype(str)
 
+    pre4 = load_run4_preprocessor()
     input_t = pre4.transform(input_data)
     input_t = input_t.toarray() if hasattr(input_t, "toarray") else input_t
 
