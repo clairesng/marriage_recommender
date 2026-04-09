@@ -484,15 +484,25 @@ def inlaw_score_to_label(score):
 
 def common_interest_score(weekend_choice, convo_choice, activity_overlap_count):
     weekend_map = {
+        "We naturally choose an activity we both enjoy": 2,
         "We naturally choose at least one activity we both enjoy": 2,
         "We can find overlap with some effort": 1,
+        "We do our own things": 0,
         "We mostly do separate things": 0,
     }
     convo_map = {
         "We have recurring topics we both get excited about": 2,
+        "Sometimes we have shared topics, sometimes we don't": 1,
         "Sometimes yes, sometimes no": 1,
+        "We don't have shared topics but have separate things we like to talk about": 0,
         "We struggle to find shared topics": 0,
     }
+
+    if weekend_choice not in weekend_map:
+        raise ValueError(f"Unexpected weekend option: {weekend_choice}")
+    if convo_choice not in convo_map:
+        raise ValueError(f"Unexpected conversation option: {convo_choice}")
+
     overlap_bonus = 2 if activity_overlap_count >= 2 else (1 if activity_overlap_count == 1 else 0)
     return weekend_map[weekend_choice] + convo_map[convo_choice] + overlap_bonus
 
