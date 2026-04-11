@@ -590,7 +590,7 @@ def get_archetype_profile(
     if values_match >= 2 and finances == "Mostly aligned" and common_int == "Yes" and social_app == "Yes" and inlaw_min_band != "Low":
         return (
             "Power Couple",
-            "You are both highly aligned on core life values and shared dynamics – your values, finances, and social lives are in sync. You're on the right track for a strong and lasting relationship!",
+            "You are both aligned on core life values and dynamics – your values, finances, and social lives are in sync. You're on the right track for a strong and lasting relationship!",
             "You may unknowingly become complacent about the relationship and take each other for granted, or stop challenging each other to grow.",
             "Keep a monthly check-in to discuss important topics, and keep being open with each other. This ensures both of you are on the same page without compromising honesty for harmony. Don't forget to have fun together!",
         )
@@ -598,15 +598,15 @@ def get_archetype_profile(
     if values_match >= 2 and inlaw_min_band == "Low":
         return (
             "Island Tribe",
-            "You have a strong bond as a couple, aligning on your shared values which you both cherish and see as important. The 'big picture' matters to you - and this is likely a powerful glue for your relationship.",
+            "You have shared values as a couple that has brought you two together. These values - whether it's a common love of fitness or family, for example - is likely a powerful glue for your relationship.",
             "Friction from family or future in-laws can spill into your relationship and drain your energy. Whether it's on one side or both, it can create tension that may be hard to resolve without support.",
-            "Create a boundary plan for family events and interactions (e.g. duration, exit cue, and debrief after). Focus on being a team and if possible, work on improving the relationship with your potential in-laws.",
+            "Focus on being a team and if possible, work on improving the relationship with your potential in-laws. Create a boundary plan for family events and interactions (e.g. duration, exit cue, and debrief after).",
         )
 
     if common_int == "Yes" and values_match <= 1:
         return (
             "Dynamic Explorers",
-            "You connect through shared activities and energy, and your relationship is likely filled with adventure. You enjoy spending time with each other, and your hobbies feel even better when done together!",
+            "Your relationship is likely built on quality time spent together as you two connect through shared activities. It's a blessing to enjoy spending time with each other!",
             "Without meaning to, topics about the future (kids, money, long-term goals) may be under-discussed or forgotten in the excitement of your relationship.",
             "Be proactive about bridging any gaps in what you both want and need. Organising a monthly check-in can help you stay aligned and engaged about your future together. Remember to approach these conversations with curiosity and openness (e.g. 'Help me understand why this is important to you?').",
         )
@@ -614,7 +614,7 @@ def get_archetype_profile(
     if finances == "Mostly aligned" and household_aligned and soulmates != "Yes - we both do":
         return (
             "Practical Architects",
-            "You are a strong operational 'Dream Team' for real-world decisions, and you have the potential to build a well-aligned life together with your shared practical approach.",
+            "You are an operational 'dream team' when it comes to real-world decisions, and a shared practical approach gives you the potential to build a well-aligned life together.",
             "If you spend most of your time discussing logistics, your relationship may start to become too administrative without emotional replenishment.",
             "Don't forget to have fun! Schedule time for romance and shared hobbies that aren't just about maintaining the household. Consider asking each other 'What can I do to make you feel more loved and appreciated this week?' to strengthen your emotional connection as a couple.",
         )
@@ -622,7 +622,7 @@ def get_archetype_profile(
     if abs(age_gap) >= 5 and social_app == "Yes" and politics != "We share the same views":
         return (
             "Fire & Ice Duo",
-            "Different backgrounds coexisting with solid support. Even with a larger age gap, you share a strong social bond.",
+            "Even with a larger age gap, you two find ways to connect and see eye to eye on many things. You are likely curious and open, which can help strengthen your bond and keep things exciting.",
             "Differences in values and viewpoints may intensify conflict for couples who lack conflict resolution and repair skills.",
             "Define 3 non-negotiable shared values to anchor disagreements, and remember to validate each other's feelings during conflict (e.g. 'I see why that would be important to you'). Repairing after conflict is especially important, such as doing a shared activity you both enjoy.",
         )
