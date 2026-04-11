@@ -586,80 +586,108 @@ def get_archetype_profile(
     politics,
     premarital,
 ):
-    # Deterministic priority rules (first match wins)
-    if values_match >= 2 and finances == "Mostly aligned" and common_int == "Yes" and social_app == "Yes" and inlaw_min_band != "Low":
-        return (
-            "Power Couple",
+    profiles = {
+        "Power Couple": (
             "You are both aligned on core life values and dynamics – your values, finances, and social lives are in sync. You're on the right track for a strong and lasting relationship!",
             "You may unknowingly become complacent about the relationship and take each other for granted, or stop challenging each other to grow.",
             "Keep a monthly check-in to discuss important topics, and keep being open with each other. This ensures both of you are on the same page without compromising honesty for harmony. Don't forget to have fun together!",
-        )
-
-    if values_match >= 2 and inlaw_min_band == "Low":
-        return (
-            "Island Tribe",
+        ),
+        "Island Tribe": (
             "You have shared values as a couple that has brought you two together. These values - whether it's a common love of fitness or family, for example - is likely a powerful glue for your relationship.",
             "Friction from family or future in-laws can spill into your relationship and drain your energy. Whether it's on one side or both, it can create tension that may be hard to resolve without support.",
             "Focus on being a team and if possible, work on improving the relationship with your potential in-laws. Create a boundary plan for family events and interactions (e.g. duration, exit cue, and debrief after).",
-        )
-
-    if common_int == "Yes" and values_match <= 1:
-        return (
-            "Dynamic Explorers",
+        ),
+        "Dynamic Explorers": (
             "Your relationship is likely built on quality time spent together as you two connect through shared activities. It's a blessing to enjoy spending time with each other!",
             "Without meaning to, topics about the future (kids, money, long-term goals) may be under-discussed or forgotten in the excitement of your relationship.",
             "Be proactive about bridging any gaps in what you both want and need. Organising a monthly check-in can help you stay aligned and engaged about your future together. Remember to approach these conversations with curiosity and openness (e.g. 'Help me understand why this is important to you?').",
-        )
-
-    if finances == "Mostly aligned" and household_aligned and soulmates != "Yes - we both do":
-        return (
-            "Practical Architects",
+        ),
+        "Practical Architects": (
             "You are an operational 'dream team' when it comes to real-world decisions, and a shared practical approach gives you the potential to build a well-aligned life together.",
             "If you spend most of your time discussing logistics, your relationship may start to become too administrative without emotional replenishment.",
             "Don't forget to have fun! Schedule time for romance and shared hobbies that aren't just about maintaining the household. Consider asking each other 'What can I do to make you feel more loved and appreciated this week?' to strengthen your emotional connection as a couple.",
-        )
-
-    if abs(age_gap) >= 5 and social_app == "Yes" and politics != "We share the same views":
-        return (
-            "Fire & Ice Duo",
+        ),
+        "Fire & Ice Duo": (
             "Even with a larger age gap, you two find ways to connect and see eye to eye on many things. You are likely curious and open, which can help strengthen your bond and keep things exciting.",
             "Differences in values and viewpoints may intensify conflict for couples who lack conflict resolution and repair skills.",
             "Define 3 non-negotiable shared values to anchor disagreements, and remember to validate each other's feelings during conflict (e.g. 'I see why that would be important to you'). Repairing after conflict is especially important, such as doing a shared activity you both enjoy.",
-        )
-
-    if premarital == "Yes" and inlaw_min_band != "Low" and finances != "Mostly aligned":
-        return (
-            "Safety Net Couple",
+        ),
+        "Safety Net Couple": (
             "You have good support structures as a couple and a willingness to work on the relationship. By taking the step to attend premarital counselling, you have taken a proactive approach to building a strong foundation.",
             "Financial alignment is the main sticking point to work on together.",
             "Work on a shared system (rules for saving, spending, and emergency decisions). Discuss your money values and triggers to understand each other's perspectives and find a common ground that respects both approaches. Since money can be a sensitive topic, remember to approach it with a problem-solving mindset.",
-        )
+        ),
+        "Balanced Builders": (
+            "You are 'steady growers' as a couple - showing mixed strengths with room to grow into a very stable pattern.",
+            "Undefined friction can quietly accumulate without structure or check-ins.",
+            "Pick an area to focus on for 30 days (money alignment, family relationships, or shared hobbies) and set a shared goal to work towards together. Remember to approach challenges as a team, and invest in the relationship with consistent acts of support.",
+        ),
+    }
 
-    return (
-        "Balanced Builders",
-        "You are 'steady growers' as a couple - showing mixed strengths with room to grow into a very stable pattern.",
-        "Undefined friction can quietly accumulate without structure or check-ins.",
-        "Pick an area to focus on for 30 days (money alignment, family relationships, or shared hobbies) and set a shared goal to work towards together. Remember to approach challenges as a team, and invest in the relationship with consistent acts of support.",
-    )
+    scores = {
+        "Power Couple": 0,
+        "Island Tribe": 0,
+        "Dynamic Explorers": 0,
+        "Practical Architects": 0,
+        "Fire & Ice Duo": 0,
+        "Safety Net Couple": 0,
+        "Balanced Builders": 1,
+    }
 
-
-def get_secondary_archetype_hint(values_match, inlaw_min_band, common_int, finances, primary_archetype=None):
-    candidates = []
-
-    if inlaw_min_band == "Low":
-        candidates.append("Island Tribe")
-    if common_int == "Yes" and values_match <= 1:
-        candidates.append("Dynamic Explorers")
+    if values_match >= 2:
+        scores["Power Couple"] += 1
+        scores["Island Tribe"] += 2
     if finances == "Mostly aligned":
-        candidates.append("Practical Architects")
+        scores["Power Couple"] += 1
+        scores["Practical Architects"] += 2
+    if common_int == "Yes":
+        scores["Power Couple"] += 1
+        scores["Dynamic Explorers"] += 2
+    if social_app == "Yes":
+        scores["Power Couple"] += 1
+        scores["Fire & Ice Duo"] += 1
+    if inlaw_min_band != "Low":
+        scores["Power Couple"] += 1
+        scores["Safety Net Couple"] += 1
+    if inlaw_min_band == "Low":
+        scores["Island Tribe"] += 3
+    if values_match <= 1:
+        scores["Dynamic Explorers"] += 2
+    if household_aligned:
+        scores["Practical Architects"] += 1
+    if soulmates != "Yes - we both do":
+        scores["Practical Architects"] += 1
+    if abs(age_gap) >= 5:
+        scores["Fire & Ice Duo"] += 2
+    if politics != "We share the same views":
+        scores["Fire & Ice Duo"] += 1
+    if premarital == "Yes":
+        scores["Safety Net Couple"] += 2
+    if finances != "Mostly aligned":
+        scores["Safety Net Couple"] += 1
 
-    candidates.extend(["Balanced Builders", "Growth Partners"])
+    priority = [
+        "Power Couple",
+        "Island Tribe",
+        "Dynamic Explorers",
+        "Practical Architects",
+        "Fire & Ice Duo",
+        "Safety Net Couple",
+        "Balanced Builders",
+    ]
+    priority_idx = {name: i for i, name in enumerate(priority)}
 
-    for cand in candidates:
-        if cand != primary_archetype:
-            return cand
+    ranked = sorted(scores.items(), key=lambda kv: (kv[1], -priority_idx[kv[0]]), reverse=True)
+    primary_name, primary_score = ranked[0]
+    secondary_name, secondary_score = ranked[1]
 
-    return "Growth Partners"
+    secondary_dynamic = None
+    if secondary_score >= 3 and (primary_score - secondary_score) <= 1:
+        secondary_dynamic = secondary_name
+
+    modifier_tag = "Money Alignment Gap" if finances == "Rarely aligned" else None
+    vibe, risk_note, growth_tip = profiles[primary_name]
+    return primary_name, vibe, risk_note, growth_tip, secondary_dynamic, modifier_tag
 
 
 def get_archetype_image_path(archetype):
@@ -1027,7 +1055,7 @@ if st.session_state.partner_answers["Girlfriend"] and st.session_state.partner_a
     compatibility_score = float(probs[stable_idx] * 100)
 
     band_name, band_desc = get_compatibility_band(compatibility_score)
-    archetype, vibe, risk_note, growth_tip = get_archetype_profile(
+    archetype, vibe, risk_note, growth_tip, secondary_dynamic, modifier_tag = get_archetype_profile(
         values_match=values_match,
         inlaw_min_band=inlaw_min_band,
         common_int=common_int,
@@ -1057,6 +1085,8 @@ if st.session_state.partner_answers["Girlfriend"] and st.session_state.partner_a
 
     st.write(band_desc)
     st.markdown(f"#### Archetype: **{archetype}**")
+    if modifier_tag is not None:
+        st.caption(f"Modifier: **{modifier_tag}**")
 
     archetype_image = get_archetype_image_path(archetype)
     if archetype_image is not None:
@@ -1067,18 +1097,11 @@ if st.session_state.partner_answers["Girlfriend"] and st.session_state.partner_a
     st.write(f"**The Vibe:** {vibe}")
     st.write(f"**Watch-Out-For:** {risk_note}")
     st.info(f"🎯 **Growth Quest:** {growth_tip}")
+    if finances == "Rarely aligned":
+        st.caption("💡 Finance note: Money is one of the biggest themes in marriage, so getting on the same page can protect trust and strengthen your long-term partnership.")
 
-    # Mitigation for boundary instability: show a secondary hint near band edges.
-    nearest_edge_dist = min(abs(compatibility_score - x) for x in [40, 65, 85])
-    if nearest_edge_dist <= 3:
-        secondary = get_secondary_archetype_hint(
-            values_match,
-            inlaw_min_band,
-            common_int,
-            finances,
-            primary_archetype=archetype,
-        )
-        st.caption(f"Near a band boundary: secondary possible dynamic is **{secondary}**.")
+    if secondary_dynamic is not None:
+        st.caption(f"Secondary possible dynamic: **{secondary_dynamic}**.")
 
     # Mitigations for interpretation risks
     with st.expander("How to interpret your results responsibly"):
