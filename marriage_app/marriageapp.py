@@ -32,19 +32,31 @@ st.markdown(
             }
 
             div[data-testid="stRadio"] [role="radiogroup"] > label {
-                display: flex !important;
+                display: grid !important;
+                grid-template-columns: auto 1fr;
                 align-items: flex-start !important;
                 width: 100% !important;
                 min-width: 0 !important;
+                min-height: 3.75rem !important;
                 height: auto !important;
-                padding-top: 0.35rem !important;
-                padding-bottom: 0.35rem !important;
+                padding: 0.65rem 0.85rem !important;
+                margin-bottom: 0.45rem !important;
+                border: 1px solid rgba(49, 51, 63, 0.18) !important;
+                border-radius: 12px !important;
+                background: rgba(255, 255, 255, 0.72) !important;
+                box-sizing: border-box !important;
             }
 
             div[data-testid="stRadio"] [role="radiogroup"] > label > div {
                 min-width: 0 !important;
                 white-space: normal !important;
                 overflow: visible !important;
+                max-width: 100% !important;
+            }
+
+            div[data-testid="stRadio"] [role="radiogroup"] > label > div:last-child {
+                line-height: 1.35 !important;
+                padding-left: 0.25rem !important;
             }
 
             div[data-testid="stRadio"] [role="radiogroup"] > label span,
@@ -52,6 +64,11 @@ st.markdown(
             div[data-testid="stRadio"] [role="radiogroup"] > label div {
                 white-space: normal !important;
                 overflow: visible !important;
+            }
+
+            div[data-testid="stRadio"] [role="radiogroup"] > label:hover {
+                border-color: rgba(59, 130, 246, 0.45) !important;
+                background: rgba(255, 255, 255, 0.96) !important;
             }
 
             div[data-testid="stRadio"] div[role="radiogroup"] {
