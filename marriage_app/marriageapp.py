@@ -31,12 +31,41 @@ st.markdown(
                 line-height: 1.35 !important;
             }
 
+            div[data-testid="stRadio"] [role="radiogroup"] > label {
+                display: flex !important;
+                align-items: flex-start !important;
+                width: 100% !important;
+                min-width: 0 !important;
+                height: auto !important;
+                padding-top: 0.35rem !important;
+                padding-bottom: 0.35rem !important;
+            }
+
+            div[data-testid="stRadio"] [role="radiogroup"] > label > div {
+                min-width: 0 !important;
+                white-space: normal !important;
+                overflow: visible !important;
+            }
+
+            div[data-testid="stRadio"] [role="radiogroup"] > label span,
+            div[data-testid="stRadio"] [role="radiogroup"] > label p,
+            div[data-testid="stRadio"] [role="radiogroup"] > label div {
+                white-space: normal !important;
+                overflow: visible !important;
+            }
+
             div[data-testid="stRadio"] div[role="radiogroup"] {
                 gap: 0.35rem;
             }
 
             div[data-testid="stSelectbox"] div[data-baseweb="select"] > div {
                 min-height: auto !important;
+            }
+
+            div[data-testid="stSelectbox"] div[data-baseweb="select"] [role="option"] {
+                min-height: auto !important;
+                white-space: normal !important;
+                line-height: 1.35 !important;
             }
         }
     </style>
