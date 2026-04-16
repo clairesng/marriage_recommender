@@ -887,7 +887,7 @@ if not quiz_complete:
                 "When it comes to kids",
                 ["I want children", "I don't want children", "I'm undecided"],
             )
-            politics = st.selectbox(
+            politics = st.radio(
                 "When politics comes up...",
                 [
                     "My partner and I see eye to eye",
@@ -896,7 +896,7 @@ if not quiz_complete:
                     "It causes friction or an argument",
                 ],
             )
-            finance_windfall = st.selectbox(
+            finance_windfall = st.radio(
                 "You and your partner just won S$10,000 in a lucky draw. What feels most like your instinct?",
                 FINANCE_WINDFALL_OPTIONS,
             )
@@ -904,7 +904,7 @@ if not quiz_complete:
                 "Which money persona sounds most like you?",
                 FINANCE_PERSONA_OPTIONS,
             )
-            finance_overspend = st.selectbox(
+            finance_overspend = st.radio(
                 "At month-end, expenses were 20% above plan. What would you most likely do?",
                 FINANCE_OVERSPEND_OPTIONS,
             )
@@ -955,7 +955,7 @@ if not quiz_complete:
 
             st.divider()
             st.subheader("4) Interests & Hobbies")
-            common_convo = st.selectbox(
+            common_convo = st.radio(
                 "After a long day, your conversations are usually...",
                 [
                     "We have recurring topics we both get excited about",
@@ -977,7 +977,7 @@ if not quiz_complete:
                 interest_options,
                 max_selections=2,
             )
-            common_weekend = st.selectbox(
+            common_weekend = st.radio(
                 "It's a free Saturday. What usually happens?",
                 [
                     "We naturally choose an activity we both enjoy",
