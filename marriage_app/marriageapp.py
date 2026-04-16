@@ -76,9 +76,11 @@ st.markdown(
             }
 
             div[data-testid="stForm"] div[data-testid="stSelectbox"] div[data-baseweb="select"] > div {
-                min-height: auto !important;
+                min-height: 2.2rem !important;
                 height: auto !important;
                 align-items: flex-start !important;
+                padding-top: 0.2rem !important;
+                padding-bottom: 0.2rem !important;
             }
 
             div[data-testid="stForm"] div[data-testid="stSelectbox"] div[data-baseweb="select"] [class*="singleValue"],
@@ -87,7 +89,7 @@ st.markdown(
                 white-space: normal !important;
                 overflow: visible !important;
                 text-overflow: clip !important;
-                line-height: 1.35 !important;
+                line-height: 1.2 !important;
             }
 
             div[data-testid="stForm"] div[data-baseweb="popover"],
@@ -99,9 +101,9 @@ st.markdown(
             div[data-testid="stForm"] div[data-testid="stSelectbox"] div[data-baseweb="select"] [role="option"] {
                 min-height: auto !important;
                 white-space: normal !important;
-                line-height: 1.35 !important;
-                padding-top: 0.6rem !important;
-                padding-bottom: 0.6rem !important;
+                line-height: 1.2 !important;
+                padding-top: 0.35rem !important;
+                padding-bottom: 0.35rem !important;
                 height: auto !important;
                 overflow: visible !important;
             }
