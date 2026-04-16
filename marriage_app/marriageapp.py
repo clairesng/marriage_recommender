@@ -6,6 +6,8 @@ from sklearn.compose import ColumnTransformer
 from sklearn.impute import SimpleImputer
 from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import OneHotEncoder
+from streamlit_gsheets import GSheetsConnection
+from datetime import datetime
 
 # Streamlit page config must be the first Streamlit command.
 st.set_page_config(page_title="Marriage Recommender", page_icon="💍")
@@ -112,6 +114,37 @@ st.markdown(
     """,
     unsafe_allow_html=True,
 )
+
+
+def save_response_to_sheets(results_df, score, archetype):
+    """Appends the quiz results to the connected Google Sheet."""
+    try:
+        conn = st.connection("gsheets", type=GSheetsConnection)
+        
+        # 1. Prepare the row data
+        new_row = results_df.copy()
+        new_row.insert(0, "Timestamp", datetime.now().strftime("%Y-%m-%d %H:%M:%S"))
+        new_row["Compatibility Score"] = f"{score:.1f}%"
+        new_row["Archetype"] = archetype
+        
+        # 2. Read existing data
+        try:
+            existing_data = conn.read(worksheet="Sheet1", ttl=0)
+        except Exception as read_err:
+            print(f"Note: Could not read Sheet1 (maybe it is empty?): {read_err}")
+            existing_data = pd.DataFrame()
+        
+        # 3. Append and Update
+        if existing_data.empty:
+            updated_df = new_row
+        else:
+            updated_df = pd.concat([existing_data, new_row], ignore_index=True)
+            
+        conn.update(worksheet="Sheet1", data=updated_df)
+        
+        return True
+    except Exception:
+        return False
 
 
 def resolve_project_file(filename: str) -> Path:
@@ -826,7 +859,7 @@ quiz_complete = (
 if not quiz_complete:
     st.subheader("Player setup")
     active_partner = st.radio(
-        "",
+        "Select active player:",
         ["Girlfriend", "Boyfriend"],
         horizontal=True,
         label_visibility="collapsed",
@@ -1048,9 +1081,6 @@ if not quiz_complete:
 # 4. Combined prediction once both partners are saved
 if st.session_state.partner_answers["Girlfriend"] and st.session_state.partner_answers["Boyfriend"]:
     st.subheader("Results")
-    if st.button("Start new quiz (reset both responses)", type="primary"):
-        st.session_state.partner_answers = {"Girlfriend": None, "Boyfriend": None}
-        st.rerun()
 
     gf = st.session_state.partner_answers["Girlfriend"]
     bf = st.session_state.partner_answers["Boyfriend"]
@@ -1211,3 +1241,18 @@ if st.session_state.partner_answers["Girlfriend"] and st.session_state.partner_a
         st.markdown(
             "- **Not deterministic:** Treat this as a tool for self-reflection rather than a verdict. Results may not generalise to all couples. Regardless of compatibility score, the Growth Quest can provide useful next steps for you and your partner to improve your relationship. \n"
         )
+
+    # Logic to prevent double-saving on rerun
+    if "data_logged" not in st.session_state:
+        st.session_state.data_logged = False
+
+    if not st.session_state.data_logged:
+        success = save_response_to_sheets(input_data, compatibility_score, archetype)
+        if success:
+            st.session_state.data_logged = True
+
+    # IMPORTANT: Reset the 'data_logged' flag when the user starts a new quiz
+    if st.button("Start new quiz (reset both responses)", type="primary"):
+        st.session_state.partner_answers = {"Girlfriend": None, "Boyfriend": None}
+        st.session_state.data_logged = False # Reset this!
+        st.rerun()
