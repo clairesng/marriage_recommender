@@ -14,10 +14,10 @@ st.markdown(
     """
     <style>
         @media (max-width: 768px) {
-            div[data-testid="stRadio"] label,
-            div[data-testid="stSelectbox"] label,
-            div[data-baseweb="select"] [role="option"],
-            div[data-baseweb="select"] [data-baseweb="menu-item"] {
+            div[data-testid="stForm"] div[data-testid="stRadio"] label,
+            div[data-testid="stForm"] div[data-testid="stSelectbox"] label,
+            div[data-testid="stForm"] div[data-baseweb="select"] [role="option"],
+            div[data-testid="stForm"] div[data-baseweb="select"] [data-baseweb="menu-item"] {
                 white-space: normal !important;
                 overflow: visible !important;
                 text-overflow: clip !important;
@@ -25,13 +25,13 @@ st.markdown(
                 overflow-wrap: anywhere !important;
             }
 
-            div[data-testid="stRadio"] label {
+            div[data-testid="stForm"] div[data-testid="stRadio"] label {
                 height: auto !important;
                 align-items: flex-start !important;
                 line-height: 1.35 !important;
             }
 
-            div[data-testid="stRadio"] [role="radiogroup"] > label {
+            div[data-testid="stForm"] div[data-testid="stRadio"] [role="radiogroup"] > label {
                 display: grid !important;
                 grid-template-columns: auto 1fr;
                 align-items: flex-start !important;
@@ -47,39 +47,39 @@ st.markdown(
                 box-sizing: border-box !important;
             }
 
-            div[data-testid="stRadio"] [role="radiogroup"] > label > div {
+            div[data-testid="stForm"] div[data-testid="stRadio"] [role="radiogroup"] > label > div {
                 min-width: 0 !important;
                 white-space: normal !important;
                 overflow: visible !important;
                 max-width: 100% !important;
             }
 
-            div[data-testid="stRadio"] [role="radiogroup"] > label > div:last-child {
+            div[data-testid="stForm"] div[data-testid="stRadio"] [role="radiogroup"] > label > div:last-child {
                 line-height: 1.35 !important;
                 padding-left: 0.25rem !important;
             }
 
-            div[data-testid="stRadio"] [role="radiogroup"] > label span,
-            div[data-testid="stRadio"] [role="radiogroup"] > label p,
-            div[data-testid="stRadio"] [role="radiogroup"] > label div {
+            div[data-testid="stForm"] div[data-testid="stRadio"] [role="radiogroup"] > label span,
+            div[data-testid="stForm"] div[data-testid="stRadio"] [role="radiogroup"] > label p,
+            div[data-testid="stForm"] div[data-testid="stRadio"] [role="radiogroup"] > label div {
                 white-space: normal !important;
                 overflow: visible !important;
             }
 
-            div[data-testid="stRadio"] [role="radiogroup"] > label:hover {
+            div[data-testid="stForm"] div[data-testid="stRadio"] [role="radiogroup"] > label:hover {
                 border-color: rgba(59, 130, 246, 0.45) !important;
                 background: rgba(255, 255, 255, 0.96) !important;
             }
 
-            div[data-testid="stRadio"] div[role="radiogroup"] {
+            div[data-testid="stForm"] div[data-testid="stRadio"] div[role="radiogroup"] {
                 gap: 0.35rem;
             }
 
-            div[data-testid="stSelectbox"] div[data-baseweb="select"] > div {
+            div[data-testid="stForm"] div[data-testid="stSelectbox"] div[data-baseweb="select"] > div {
                 min-height: auto !important;
             }
 
-            div[data-testid="stSelectbox"] div[data-baseweb="select"] [role="option"] {
+            div[data-testid="stForm"] div[data-testid="stSelectbox"] div[data-baseweb="select"] [role="option"] {
                 min-height: auto !important;
                 white-space: normal !important;
                 line-height: 1.35 !important;
