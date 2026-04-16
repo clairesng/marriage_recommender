@@ -77,12 +77,33 @@ st.markdown(
 
             div[data-testid="stForm"] div[data-testid="stSelectbox"] div[data-baseweb="select"] > div {
                 min-height: auto !important;
+                height: auto !important;
+                align-items: flex-start !important;
+            }
+
+            div[data-testid="stForm"] div[data-testid="stSelectbox"] div[data-baseweb="select"] [class*="singleValue"],
+            div[data-testid="stForm"] div[data-testid="stSelectbox"] div[data-baseweb="select"] [class*="placeholder"],
+            div[data-testid="stForm"] div[data-testid="stSelectbox"] div[data-baseweb="select"] [class*="ValueContainer"] {
+                white-space: normal !important;
+                overflow: visible !important;
+                text-overflow: clip !important;
+                line-height: 1.35 !important;
+            }
+
+            div[data-testid="stForm"] div[data-baseweb="popover"],
+            div[data-testid="stForm"] div[data-baseweb="menu"] {
+                width: min(100vw - 2rem, 100%) !important;
+                max-width: min(100vw - 2rem, 100%) !important;
             }
 
             div[data-testid="stForm"] div[data-testid="stSelectbox"] div[data-baseweb="select"] [role="option"] {
                 min-height: auto !important;
                 white-space: normal !important;
                 line-height: 1.35 !important;
+                padding-top: 0.6rem !important;
+                padding-bottom: 0.6rem !important;
+                height: auto !important;
+                overflow: visible !important;
             }
         }
     </style>
