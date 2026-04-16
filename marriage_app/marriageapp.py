@@ -37,7 +37,7 @@ st.markdown(
                 align-items: flex-start !important;
                 width: 100% !important;
                 min-width: 0 !important;
-                min-height: 3.75rem !important;
+                min-height: 2.5rem !important;
                 height: auto !important;
                 padding: 0.65rem 0.85rem !important;
                 margin-bottom: 0.45rem !important;
@@ -923,7 +923,7 @@ if not quiz_complete:
                 "You and your partner just won S$10,000 in a lucky draw. What feels most like your instinct?",
                 FINANCE_WINDFALL_OPTIONS,
             )
-            finance_persona = st.selectbox(
+            finance_persona = st.radio(
                 "Which money persona sounds most like you?",
                 FINANCE_PERSONA_OPTIONS,
             )
