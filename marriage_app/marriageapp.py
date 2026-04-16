@@ -10,6 +10,40 @@ from sklearn.preprocessing import OneHotEncoder
 # Streamlit page config must be the first Streamlit command.
 st.set_page_config(page_title="Marriage Recommender", page_icon="💍")
 
+st.markdown(
+    """
+    <style>
+        @media (max-width: 768px) {
+            div[data-testid="stRadio"] label,
+            div[data-testid="stSelectbox"] label,
+            div[data-baseweb="select"] [role="option"],
+            div[data-baseweb="select"] [data-baseweb="menu-item"] {
+                white-space: normal !important;
+                overflow: visible !important;
+                text-overflow: clip !important;
+                word-break: break-word !important;
+                overflow-wrap: anywhere !important;
+            }
+
+            div[data-testid="stRadio"] label {
+                height: auto !important;
+                align-items: flex-start !important;
+                line-height: 1.35 !important;
+            }
+
+            div[data-testid="stRadio"] div[role="radiogroup"] {
+                gap: 0.35rem;
+            }
+
+            div[data-testid="stSelectbox"] div[data-baseweb="select"] > div {
+                min-height: auto !important;
+            }
+        }
+    </style>
+    """,
+    unsafe_allow_html=True,
+)
+
 
 def resolve_project_file(filename: str) -> Path:
     app_dir = Path(__file__).resolve().parent
