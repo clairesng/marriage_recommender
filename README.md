@@ -1,30 +1,26 @@
-# 💍 Marriage Recommender
+# 💍 Marriage Compatibility Recommender 
 
-A full-stack data science project that turns relationship survey data into an interactive, two-player compatibility experience.
+A full-stack data science project that turns relationship survey data into an interactive, two-player compatibility experience. Based on Singaporean survey data of married and divorced couples, the app uses a CatBoost classification model to generate a compatibility score, interpretive band, archetype profile, and growth recommendation for couples. 
 
 This project combines:
-- **Data analysis** (EDA + feature engineering)
+- **Data analysis** (End-to-end EDA + feature engineering)
 - **Machine learning** (CatBoost classification)
 - **Product thinking** (human-friendly outputs, not just raw predictions)
 - **App deployment** (Streamlit interface with response logging)
-
-It was built using anonymised data from married and divorced respondents in Singapore.
 
 ---
 
 ## Background
 
-Relationship compatibility is often discussed in subjective terms, but many of the patterns that shape long-term outcomes can be explored through data. This project started with a simple question: can survey responses about values, family background, finances, and lifestyle preferences be turned into a useful compatibility signal?
-
-The purpose of the project is not to predict marriage success with certainty. Instead, it aims to help users reflect on areas of alignment and possible friction in a more structured, data-informed way. By pairing machine learning with a conversational interface, the app makes the insights easier to understand for both technical and non-technical users.
+Compatibility is often discussed in subjective terms, and while the rates of marriage and divorce in Singapore are publicly available, the factors that drive a marriage's success or failure haven't been fully explored from a Data Analyst/Scientist perspective. 
 
 ---
 
 ## Why this project matters
 
-For non-technical readers: this app is designed as a **reflection tool** for couples. It does not "decide" whether a relationship will succeed. Instead, it highlights patterns and areas for discussion.
+For non-technical readers: this app is designed as a **reflection tool** for couples, helping them gain insights into their relationship dynamics in a structured, data-informed way. 
 
-For technical readers: this is an end-to-end project showing the ability to take a problem from **data → model → productised app**.
+For technical readers: this is an end-to-end project showing the ability to take a problem from **data → model → productised app**. By taking a "social science meets data science" approach, it demonstrates how machine learning can be used in a domain that is often seen as purely qualitative.
 
 ---
 
@@ -53,7 +49,7 @@ For technical readers: this is an end-to-end project showing the ability to take
 	- archetype profile
 	- growth recommendation
 - Added EDA dashboard tab directly in app for transparency
-- Logged anonymised submissions to Google Sheets for lightweight analytics
+- Logged anonymised submissions to Sheets for lightweight analytics
 
 ---
 
@@ -95,25 +91,18 @@ For technical readers: this is an end-to-end project showing the ability to take
 
 - The model output is used as a **probabilistic signal**, not a deterministic verdict.
 - App messaging is intentionally framed as **self-reflection and growth guidance**.
-- The app includes guardrails (clear interpretation notes, non-clinical framing).
+- Marriage Recommender app includes guardrails (clear interpretation notes, non-clinical framing).
 
 ---
 
 ## Potential improvements
 
 - Add model evaluation summary section (AUC, F1, confusion matrix snapshots)
+- Increase dataset size and diversity to improve statistical power, reduce sampling bias and strengthen model generalisation
 - Introduce model monitoring / drift checks for new incoming responses
 - Add explainability layer (e.g., SHAP feature contribution view)
-- Expand question set and test fairness/generalisation across subgroups
+- Expand question set and test generalisation across subgroups
 
----
+## Conclusion
 
-## Recruiter quick summary
-
-This project demonstrates the ability to:
-- frame a real-world problem,
-- build and evaluate an ML pipeline,
-- deploy an interactive product,
-- communicate outputs responsibly to both technical and non-technical users.
-
-If you are hiring for **data analyst / data scientist / applied ML / analytics engineering** paths, this project reflects strong end-to-end ownership.
+This project demonstrates one example of how data analytics and machine learning can be applied to a qualitative topic like compatibility. In Singapore, where recent marriage/divorce/fertility rates are of public interest, the Marriage Recommender app offers an accessible and engaging way to provide insights for couples to engage with the data and reflect on relationship dynamics.
